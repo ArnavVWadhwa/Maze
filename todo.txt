@@ -1,0 +1,4 @@
+1. Make Maze Generator
+2. Implement Pathfinding algorithms
+3. Visualize pathfinding algorithms
+4* Maybe user input
