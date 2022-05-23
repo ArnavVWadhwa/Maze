@@ -2,3 +2,15 @@
 2. Implement Pathfinding algorithms
 3. Visualize pathfinding algorithms
 4* Maybe user input
+
+Maze generating algorithms to implement:
+
+Recursive backtracking - http://weblog.jamisbuck.org/2010/12/27/maze-generation-recursive-backtracking
+
+Hunt and Kill - http://weblog.jamisbuck.org/2011/1/24/maze-generation-hunt-and-kill-algorithm
+
+Growing tree - http://weblog.jamisbuck.org/2011/1/27/maze-generation-growing-tree-algorithm 
+
+
+*** java implementation ***
+https://github.com/armin-reichert/mazes 
