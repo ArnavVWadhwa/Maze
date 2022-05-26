@@ -14,3 +14,11 @@ Growing tree - http://weblog.jamisbuck.org/2011/1/27/maze-generation-growing-tre
 
 *** java implementation ***
 https://github.com/armin-reichert/mazes 
+
+
+****************************************
+
+We have a grid for the maze which is comprised of cell objects that stores:
+The amount of edges it has
+Which directions has edges
+Add / remove edges
