@@ -162,7 +162,7 @@ public class Cell {
         int y2 = y * Maze.W;
 
         if(visited) {
-            g.setColor(Color.MAGENTA);
+            g.setColor(Color.decode("#FFAAAB"));
             g.fillRect(x2, y2, Maze.W, Maze.W);
         }
         if(path) {
@@ -172,9 +172,8 @@ public class Cell {
             g.setColor(Color.RED);
             g.fillRect(x2, y2, Maze.W, Maze.W);
         }
-        // top 0, right 1, bottom 2, left 3
         // north 0, south 1, east 2, west 3
-        g.setColor(Color.WHITE);
+        g.setColor(Color.decode("#323232"));
         if (walls[0]) {
             g.drawLine(x2, y2, x2+Maze.W, y2);
         }

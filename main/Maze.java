@@ -72,12 +72,12 @@ public class Maze {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         MazeGridPanel grid = new MazeGridPanel(rows, cols);
-        grid.setBackground(Color.BLACK);
+        grid.setBackground(Color.decode("#CCCCCC"));
 
         JPanel mazeBorder = new JPanel();
         final int BORDER_SIZE = 20;
         mazeBorder.setBounds(0, 0, WIDTH + BORDER_SIZE, HEIGHT + BORDER_SIZE);
-        mazeBorder.setBackground(Color.BLACK);
+        mazeBorder.setBackground(Color.decode("#323232"));
         mazeBorder.setBorder(BorderFactory.createEmptyBorder(BORDER_SIZE, BORDER_SIZE, BORDER_SIZE, BORDER_SIZE));
 
         mazeBorder.add(grid);
