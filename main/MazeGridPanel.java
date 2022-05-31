@@ -56,8 +56,8 @@ public class MazeGridPanel extends JPanel {
         for (Cell c : grid) {
             c.setDeadEnd(false);
             c.setPath(false);
-//            c.setDistance(-1);
-//            c.setParent(null);
+            c.setDistance(-1);
+            c.setParent(null);
         }
         repaint();
     }

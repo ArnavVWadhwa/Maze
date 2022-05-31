@@ -1,6 +1,5 @@
 package util;
 
-import generator.recursiveBacktracking;
 import main.Maze;
 
 import java.awt.*;
@@ -14,7 +13,9 @@ import java.util.Random;
  */
 public class Cell {
     //TODO: Brian Add whatever you need for the rest of the generation methods and all of the solving ones.
-    int x, y, maxRow, maxCol;
+    int x, y, distance;
+
+    private Cell parent;
 
     private boolean visited = false;
     private boolean path = false;
@@ -30,6 +31,7 @@ public class Cell {
     public Cell(int x, int y) {
         this.x = x;
         this.y = y;
+        this.distance = -1;
     }
 
     public void removeWalls(Cell next) {
@@ -80,6 +82,22 @@ public class Cell {
         this.path = path;
     }
 
+    public int getDistance() {
+        return distance;
+    }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
+    }
+
+    public Cell getParent() {
+        return parent;
+    }
+
+    public void setParent(Cell parent) {
+        this.parent = parent;
+    }
+
     public int getY() {
         return y;
     }
@@ -87,6 +105,7 @@ public class Cell {
     public int getX() {
         return x;
     }
+
 
     private Cell checkNeighborInGridBounds(List<Cell> grid, Cell neighbor) {
         if (grid.contains(neighbor)) {
