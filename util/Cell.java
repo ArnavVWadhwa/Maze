@@ -35,6 +35,8 @@ public class Cell {
     }
 
     public void removeWalls(Cell next) {
+        //TODO: Arnav implement better plz
+
         // north 0, south 1, east 2, west 3
         int wallX = this.x - next.x;
 

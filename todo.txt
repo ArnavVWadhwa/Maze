@@ -22,3 +22,4 @@ We have a grid for the maze which is comprised of util.Cell objects that stores:
 The amount of edges it has
 Which directions has edges
 Add / remove edges
+************************************************

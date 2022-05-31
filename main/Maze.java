@@ -71,6 +71,7 @@ public class Maze {
         frame.setContentPane(container);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        //TODO: Arnav Please fix the shitty rendering esp with the borders not having edges
         MazeGridPanel grid = new MazeGridPanel(rows, cols);
         grid.setBackground(Color.decode("#CCCCCC"));
 
