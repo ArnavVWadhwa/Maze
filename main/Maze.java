@@ -27,7 +27,7 @@ import javax.swing.JOptionPane;
  */
 public class Maze {
 
-    public static final int WIDTH = 400;
+    public static final int WIDTH = 500;
     public static final int HEIGHT = WIDTH; // best to keep these the same. variable is only created for readability.
     public static final int W = 20;
 
@@ -37,7 +37,7 @@ public class Maze {
     //TODO: Brian implement more generation methods and add them here.
     private static final String[] GENERATION_METHODS = {"0. recursiveBacktracking (DFS)", "1. huntAndKill", "2. growingTree"};
     //TODO: Brian implement more solving methods, remove these, and add them here
-    private static final String[] SOLVING_METHODS = {"0. DFS Solve"};
+    private static final String[] SOLVING_METHODS = {"0. DFS Solve", "1. BFS Solve", "2. Dijkstra's"};
 
     private int cols, rows;
 

@@ -1,25 +1,27 @@
 package solver;
 
-import main.Maze;
-import main.MazeGridPanel;
+import main.*;
 import util.Cell;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Stack;
+import java.util.Queue;
 
-public class DFSolve {
+public class BFSolve {
 
-    private final Stack<Cell> path;
-    private Cell current;
+    private final Queue<Cell> queue;
     private final List<Cell> grid;
+    private Cell current;
 
-    public DFSolve (List<Cell> grid, MazeGridPanel panel) {
+    public BFSolve(List<Cell> grid, MazeGridPanel panel) {
         this.grid = grid;
         current = grid.get(0);
-        path = new Stack<>();
+        current.setDistance(0);
+        queue = new LinkedList<>();
+        queue.offer(current);
 
         final Timer timer = new Timer(Maze.speed, null);
         timer.addActionListener(new ActionListener() {
@@ -42,18 +44,21 @@ public class DFSolve {
 
     private void solve() {
         current.setDeadEnd(true);
-        Cell next = current.getPathNeighbor(grid);
-        if (next != null) {
-            path.push(current);
-            current = next;
-        } else if (!path.isEmpty()) {
-            current = path.pop();
+        current = queue.poll();
+        List<Cell> adj = current.getMoveNeighbors(grid);
+        for (Cell c : adj) {
+            if (c.getDistance() == -1) {
+                c.setDistance(current.getDistance() + 1);
+                c.setParent(current);
+                queue.offer(c);
+            }
         }
     }
 
     private void drawSolution() {
-        while(!path.isEmpty()) {
-           path.pop().setPath(true);
+        while(current != grid.get(0)) {
+            current.setPath(true);
+            current = current.getParent();
         }
     }
 }

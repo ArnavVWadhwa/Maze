@@ -196,6 +196,22 @@ public class Cell {
         return neighbors;
     }
 
+    public List<Cell> getMoveNeighbors(List<Cell> grid) {
+        List<Cell> neighbors = new ArrayList<>(4);
+
+        Cell north = checkNeighborInGridBounds(grid, new Cell(x, y - 1));
+        Cell east = checkNeighborInGridBounds(grid, new Cell(x + 1, y));
+        Cell south = checkNeighborInGridBounds(grid, new Cell(x, y + 1));
+        Cell west = checkNeighborInGridBounds(grid, new Cell(x - 1, y));
+        // north 0, south 1, east 2, west 3
+        if (north != null) if(!walls[0]) neighbors.add(north);
+        if (south != null) if(!walls[1]) neighbors.add(south);
+        if (east != null) if(!walls[2]) neighbors.add(east);
+        if (west != null) if(!walls[3]) neighbors.add(west);
+
+        return neighbors;
+    }
+
     private Cell checkCellInGrid(List<Cell> grid, Cell neighbor) {
         if (grid.contains(neighbor)) {
             return neighbor;
