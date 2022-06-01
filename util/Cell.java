@@ -125,6 +125,15 @@ public class Cell {
         return randomNeighbor(unvisitedNeighbors);
     }
 
+    public Cell getVisitedNeighbor(List<Cell> grid) {
+        List<Cell> visitedNeighbors = getVisitedNeighborsList(grid);
+
+        if(visitedNeighbors.size() == 1) {
+            return visitedNeighbors.get(0);
+        }
+        return randomNeighbor(visitedNeighbors);
+    }
+
     private Cell randomNeighbor(List<Cell> unvisitedNeighbors) {
         if (unvisitedNeighbors.size() > 0) {
             return unvisitedNeighbors.get(new Random().nextInt(unvisitedNeighbors.size()));
@@ -144,6 +153,22 @@ public class Cell {
         if (east != null) if(!east.visited) neighbors.add(east);
         if (south != null)if(!south.visited) neighbors.add(south);
         if (west != null) if(!west.visited) neighbors.add(west);
+
+        return neighbors;
+    }
+
+    public List<Cell> getVisitedNeighborsList(List<Cell> grid) {
+        List<Cell> neighbors = new ArrayList<>(4);
+
+        Cell north = checkNeighborInGridBounds(grid, new Cell(x, y - 1));
+        Cell east = checkNeighborInGridBounds(grid, new Cell(x + 1, y));
+        Cell south = checkNeighborInGridBounds(grid, new Cell(x, y + 1));
+        Cell west = checkNeighborInGridBounds(grid, new Cell(x - 1, y));
+
+        if (north != null) if(north.visited) neighbors.add(north);
+        if (east != null) if(east.visited) neighbors.add(east);
+        if (south != null)if(south.visited) neighbors.add(south);
+        if (west != null) if(west.visited) neighbors.add(west);
 
         return neighbors;
     }
