@@ -1,8 +1,14 @@
 package generator;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import main.*;
 import util.Cell;
+
+import javax.swing.*;
 
 
 /*
@@ -14,13 +20,33 @@ import util.Cell;
 
 public class huntAndKill {
     private List<Cell> grid;
-    private List<Cell> unvisited;
+//    private List<Cell> unvisited;
     private Cell current;
     
-    public huntAndKill(List<Cell> grid){
+    public huntAndKill(List<Cell> grid, MazeGridPanel panel) {
         this.grid = grid;
         current = grid.get(0);
-        unvisited = grid;
+//        unvisited = grid;
+        /**
+         * This part is also taken from jaalsh to control how fast the maze generates so we can actually see it
+         */
+        final Timer timer = new Timer(Maze.speed, null);
+        timer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!grid.parallelStream().allMatch(Cell::isVisited)) {
+                    create();
+                } else {
+                    current = null;
+                    Maze.generated = true;
+                    timer.stop();
+                }
+                panel.setCurrent(current);
+                panel.repaint();
+                timer.setDelay(Maze.speed);
+            }
+        });
+        timer.start();
     }
 
     private void create(){
@@ -30,11 +56,12 @@ public class huntAndKill {
             current.removeWalls(next);
             current = next;
         }
-        else{
-            for(Cell c : unvisited){
-                if(c.getVisitedNeighborsList(grid).size() != 0){
+        else {
+            List<Cell> visitWithUnvisitedNeighbors;
+            visitWithUnvisitedNeighbors = grid.parallelStream().filter(c -> c.isVisited() && c.getUnvisitedNeighborsList(grid).size() > 0).collect(Collectors.toList());
+            for (Cell c : visitWithUnvisitedNeighbors) {
+                if (c != null) {
                     current = c;
-                    current.removeWalls(current.getVisitedNeighbor(grid));
                     break;
                 }
             }
