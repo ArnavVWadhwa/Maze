@@ -37,6 +37,13 @@ public class MazeGridPanel extends JPanel {
             case 0:
                 new recursiveBacktracking(grid, this);
                 break;
+            case 1:
+                new huntAndKill(grid);
+                break;
+            case 2:
+                new growingTree(grid);
+                break;
+            
             //TODO: Brian implement more generation algorithms and add them here
             default:
                 new recursiveBacktracking(grid, this);
