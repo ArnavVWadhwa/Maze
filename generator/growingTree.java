@@ -30,12 +30,16 @@ public class growingTree {
         switch(index){
             case 0:
                 current = C.get(C.size());
+                break;
             case 1:
                 current = C.get(rand.nextInt(C.size()));
+                break;
             case 2:
                 current = C.get(0);
+                break;
             case 3:
                 current = C.get((int)C.size()/2);
+                break;
         }
         Cell next = current.getUnvisitedNeighbor(grid);
         if (next != null) {
