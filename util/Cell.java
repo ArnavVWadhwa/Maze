@@ -49,7 +49,7 @@ public class Cell {
         }
 
         // north 0, south 1, east 2, west 3
-        int wallY = this.x - next.x;
+        int wallY = this.y - next.y;
 
         if (wallY == 1) {
             walls[0] = false;
