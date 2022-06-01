@@ -35,8 +35,6 @@ public class Cell {
     }
 
     public void removeWalls(Cell next) {
-        //TODO: Arnav implement better plz
-
         // north 0, south 1, east 2, west 3
         int wallX = this.x - next.x;
 
@@ -125,6 +123,15 @@ public class Cell {
         return randomNeighbor(unvisitedNeighbors);
     }
 
+    public Cell getPathNeighbor(List<Cell> grid) {
+        List<Cell> pathNeighbor = getPathNeighborsList(grid);
+
+        if(pathNeighbor.size() == 1) {
+            return pathNeighbor.get(0);
+        }
+        return randomNeighbor(pathNeighbor);
+    }
+
     public Cell getVisitedNeighbor(List<Cell> grid) {
         List<Cell> visitedNeighbors = getVisitedNeighborsList(grid);
 
@@ -153,6 +160,22 @@ public class Cell {
         if (east != null) if(!east.visited) neighbors.add(east);
         if (south != null)if(!south.visited) neighbors.add(south);
         if (west != null) if(!west.visited) neighbors.add(west);
+
+        return neighbors;
+    }
+
+    public List<Cell> getPathNeighborsList(List<Cell> grid) {
+        List<Cell> neighbors = new ArrayList<>(4);
+
+        Cell north = checkNeighborInGridBounds(grid, new Cell(x, y - 1));
+        Cell east = checkNeighborInGridBounds(grid, new Cell(x + 1, y));
+        Cell south = checkNeighborInGridBounds(grid, new Cell(x, y + 1));
+        Cell west = checkNeighborInGridBounds(grid, new Cell(x - 1, y));
+        // north 0, south 1, east 2, west 3
+        if (north != null) if(!north.deadEnd && !walls[0]) neighbors.add(north);
+        if (south != null) if(!south.deadEnd && !walls[1]) neighbors.add(south);
+        if (east != null) if(!east.deadEnd && !walls[2]) neighbors.add(east);
+        if (west != null) if(!west.deadEnd && !walls[3]) neighbors.add(west);
 
         return neighbors;
     }
@@ -193,10 +216,10 @@ public class Cell {
             g.fillRect(x2, y2, Maze.W, Maze.W);
         }
         if(path) {
-            g.setColor(Color.BLUE);
+            g.setColor(Color.decode("#34a1eb"));
             g.fillRect(x2, y2, Maze.W, Maze.W);
         } else if (deadEnd) {
-            g.setColor(Color.RED);
+            g.setColor(Color.decode("#eb3434"));
             g.fillRect(x2, y2, Maze.W, Maze.W);
         }
         // north 0, south 1, east 2, west 3
@@ -229,6 +252,7 @@ public class Cell {
     public String toString() {
         return String.format("X: %d, Y: %d", x, y);
     }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)

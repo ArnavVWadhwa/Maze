@@ -51,8 +51,11 @@ public class MazeGridPanel extends JPanel {
 
     public void solve(int index) {
         switch (index) {
-            //TODO: Brian implement solving algorithms and add them to here
+            case 1:
+                new DFSolve(grid, this);
+                break;
             default:
+                new DFSolve(grid, this);
                 break;
         }
     }
@@ -81,14 +84,24 @@ public class MazeGridPanel extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
+        int x2 = grid.get(0).getX() * Maze.W;
+        int y2 = grid.get(0).getY() * Maze.W;
         super.paintComponent(g);
         for (Cell c : grid) {
             c.draw(g);
         }
         for (Cell c : currentCells) {
-            if(c != null) c.displayAsColor(g, Color.ORANGE);
+            if (c != null) c.displayAsColor(g, Color.ORANGE);
         }
-        grid.get(0).displayAsColor(g, Color.GREEN); // start cell
-        grid.get(grid.size() - 1).displayAsColor(g, Color.YELLOW); // end or goal cell
+        grid.get(0).displayAsColor(g, Color.decode("#34eb5c")); // start cell
+        g.setColor(Color.decode("#323232"));
+        g.drawLine(x2, y2, x2 + Maze.W, y2);
+        g.drawLine(x2, y2 + Maze.W, x2, y2);
+        grid.get(grid.size() - 1).displayAsColor(g, Color.decode("#34e8eb")); // end or goal cell
+        g.setColor(Color.decode("#323232"));
+        x2 = grid.get(grid.size() - 1).getX() * Maze.W;
+        y2 = grid.get(grid.size() - 1).getY() * Maze.W;
+        g.drawLine(x2+Maze.W, y2+Maze.W, x2, y2+Maze.W);
+        g.drawLine(x2+Maze.W, y2, x2+Maze.W, y2+Maze.W);
     }
 }

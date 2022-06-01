@@ -35,9 +35,9 @@ public class Maze {
     public static boolean generated, solved;
 
     //TODO: Brian implement more generation methods and add them here.
-    private static final String[] GENERATION_METHODS = {"0. recursiveBacktracking", "1. huntAndKill", "2. growingTree"};
+    private static final String[] GENERATION_METHODS = {"0. recursiveBacktracking (DFS)", "1. huntAndKill", "2. growingTree"};
     //TODO: Brian implement more solving methods, remove these, and add them here
-    private static final String[] SOLVING_METHODS = {"add"};
+    private static final String[] SOLVING_METHODS = {"0. DFS Solve"};
 
     private int cols, rows;
 
